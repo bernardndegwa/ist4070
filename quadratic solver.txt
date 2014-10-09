@@ -1,0 +1,63 @@
+package ist4070;
+import java.util.Scanner;
+import java.util.regex.Pattern;
+import java.util.regex.Matcher;
+public class QuadraticSolverMain {
+
+		
+	@SuppressWarnings("resource")
+	public static void main(String[] args) {
+		System.out.println(" Enter a quadratic equation:\n The quadratic equation must be of "
+				+ "second order and match this sequence: \n 2x^2 + 4x + 2  Note the spacing between the operands and the operators\n");
+		Scanner input  = new Scanner(System.in);
+		
+		String firstElement= input.next();
+		
+		String thirdElement= input.next();
+	
+		String fifthElement= input.next();	
+		
+			
+		int a = extractInt(firstElement);
+		int b = extractInt(thirdElement);
+		int c = extractInt(fifthElement);	
+		
+		int bSquared = b * b;
+		
+		int fourAC = 4 * a * c;
+		
+		int beforeSquareRoot = bSquared - fourAC;
+		
+		double convertbeforeSquareRootToRealNumber = beforeSquareRoot < 1 ? -1 * beforeSquareRoot : beforeSquareRoot;
+		double innerRoot = Math.sqrt(convertbeforeSquareRootToRealNumber);
+		
+		double negativeB = -1 * b;
+		
+		double unSignedResultBeforeDivisionBy2A = negativeB + innerRoot;
+		
+		double twoA = 2 *a;
+		
+		double unSignedResultAfterDivisionBy2A =unSignedResultBeforeDivisionBy2A / twoA;
+		
+		double signedResultBeforeDivisionBy2A = b + innerRoot;
+		
+		double signedResultAfterDivisionBy2A =signedResultBeforeDivisionBy2A / twoA;
+		
+		System.out.println("X is:   \t"+ signedResultAfterDivisionBy2A+"\n");
+		System.out.println("Or X is:\t"+ unSignedResultAfterDivisionBy2A);
+		
+	}
+
+	private static int extractInt(String str) {
+		 Matcher matcher = Pattern.compile("\\d+").matcher(str);
+
+	        if (!matcher.find() ){
+	        	return 1;}
+	        else
+	            
+
+	        return Integer.parseInt(matcher.group());
+	    } 
+	}
+
+
