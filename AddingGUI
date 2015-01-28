@@ -1,0 +1,113 @@
+import java.awt.BorderLayout;
+import java.awt.Color;
+import java.awt.EventQueue;
+
+import javax.swing.JFrame;
+import javax.swing.JPanel;
+import javax.swing.border.EmptyBorder;
+import javax.swing.JLabel;
+import javax.swing.JButton;
+import javax.swing.JTextField;
+import java.awt.event.ActionListener;
+import java.awt.event.ActionEvent;
+
+
+public class Adding extends JFrame {
+
+	private JPanel contentPane;
+	private JTextField textFirst;
+	private JTextField textSecond;
+	private JTextField textSum;
+
+	/**
+	 * Launch the application.
+	 */
+	public static void main(String[] args) {
+		EventQueue.invokeLater(new Runnable() {
+			public void run() {
+				try {
+					Adding frame = new Adding();
+					frame.setVisible(true);
+				} catch (Exception e) {
+					e.printStackTrace();
+				}
+			}
+		});
+	}
+
+	/**
+	 * Create the frame.
+	 */
+	public Adding() {
+		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		setBounds(100, 100, 450, 300);
+		contentPane = new JPanel();
+		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
+		setContentPane(contentPane);
+		contentPane.setLayout(null);
+		
+		JLabel lblAddingTwoNumbers = new JLabel("Adding Two Numbers");
+		lblAddingTwoNumbers.setBounds(10, 10, 107, 50);
+		contentPane.add(lblAddingTwoNumbers);
+		
+		JLabel lblFirstNumber = new JLabel("First Number");
+		lblFirstNumber.setBounds(10, 55, 107, 39);
+		contentPane.add(lblFirstNumber);
+		
+		JLabel lblSecondNumber = new JLabel("Second Number");
+		lblSecondNumber.setBounds(10, 99, 107, 50);
+		contentPane.add(lblSecondNumber);
+		
+		JLabel lblSum = new JLabel("Sum");
+		lblSum.setBounds(10, 143, 107, 50);
+		contentPane.add(lblSum);
+		
+		JButton btnCompute = new JButton("Compute");
+		btnCompute.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				
+				/*textFirst.setBackground(Color.YELLOW);
+				textSecond.setBackground(Color.BLUE);
+				textFirst.setBackground(Color.GREEN);*/
+				int a,b,sum;
+				a = Integer.parseInt(textFirst.getText());
+				b = Integer.parseInt(textSecond.getText());
+				sum = a + b;
+				textSum.setText(sum + "");
+				
+				textSum.setFocusable(false);
+				
+			}
+		});
+		btnCompute.setBounds(52, 228, 89, 23);
+		contentPane.add(btnCompute);
+		
+		textFirst = new JTextField();
+		textFirst.setForeground(Color.GREEN);
+		textFirst.setBackground(Color.YELLOW);
+		textFirst.setBounds(183, 64, 86, 20);
+		contentPane.add(textFirst);
+		textFirst.setColumns(10);
+		
+		textSecond = new JTextField();
+		textSecond.setBounds(183, 114, 86, 20);
+		contentPane.add(textSecond);
+		textSecond.setColumns(10);
+		
+		textSum = new JTextField();
+		textSum.setBounds(183, 158, 86, 20);
+		contentPane.add(textSum);
+		textSum.setColumns(10);
+		
+		JButton btnClear = new JButton("Clear");
+		btnClear.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				textFirst.setText(null);
+				textSecond.setText(null);
+				textSum.setText(null);
+			}
+		});
+		btnClear.setBounds(210, 228, 89, 23);
+		contentPane.add(btnClear);
+	}
+}
