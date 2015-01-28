@@ -1,0 +1,118 @@
+import java.awt.BorderLayout;
+import java.awt.EventQueue;
+
+import javax.swing.JFrame;
+import javax.swing.JPanel;
+import javax.swing.border.EmptyBorder;
+import javax.swing.JLabel;
+import javax.swing.JTextField;
+import javax.swing.JButton;
+import java.awt.event.ActionListener;
+import java.awt.event.ActionEvent;
+
+
+public class Largest extends JFrame {
+
+	private JPanel contentPane;
+	private JTextField First;
+	private JTextField Second;
+	private JTextField Third;
+	private JTextField Largest;
+
+	/**
+	 * Launch the application.
+	 */
+	public static void main(String[] args) {
+		EventQueue.invokeLater(new Runnable() {
+			public void run() {
+				try {
+					Largest frame = new Largest();
+					frame.setVisible(true);
+				} catch (Exception e) {
+					e.printStackTrace();
+				}
+			}
+		});
+	}
+
+	/**
+	 * Create the frame.
+	 */
+	public Largest() {
+		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		setBounds(100, 100, 450, 300);
+		contentPane = new JPanel();
+		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
+		setContentPane(contentPane);
+		contentPane.setLayout(null);
+		
+		JLabel lblLargestOfThree = new JLabel("Largest Of Three Numbers");
+		lblLargestOfThree.setBounds(44, 11, 138, 38);
+		contentPane.add(lblLargestOfThree);
+		
+		JLabel lblFirst = new JLabel("First");
+		lblFirst.setBounds(54, 55, 52, 38);
+		contentPane.add(lblFirst);
+		
+		JLabel lblSecond = new JLabel("Second");
+		lblSecond.setBounds(44, 93, 52, 38);
+		contentPane.add(lblSecond);
+		
+		JLabel lblThird = new JLabel("Third");
+		lblThird.setBounds(54, 124, 61, 38);
+		contentPane.add(lblThird);
+		
+		JLabel lblLargest = new JLabel("Largest");
+		lblLargest.setBounds(54, 155, 52, 39);
+		contentPane.add(lblLargest);
+		
+		First = new JTextField();
+		First.setBounds(171, 64, 86, 20);
+		contentPane.add(First);
+		First.setColumns(10);
+		
+		Second = new JTextField();
+		Second.setBounds(171, 102, 86, 20);
+		contentPane.add(Second);
+		Second.setColumns(10);
+		
+		Third = new JTextField();
+		Third.setBounds(171, 133, 86, 20);
+		contentPane.add(Third);
+		Third.setColumns(10);
+		
+		Largest = new JTextField();
+		Largest.setBounds(171, 164, 86, 20);
+		contentPane.add(Largest);
+		Largest.setColumns(10);
+		
+		JButton compute = new JButton("Find The largest");
+		compute.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				int a,b,c,largest;
+				a = Integer.parseInt(First.getText());
+				b = Integer.parseInt(Second.getText());
+				c = Integer.parseInt(Third.getText());
+				largest = Math.max(c,(Math.max(a,b)));
+				Largest.setText(largest + "");
+				
+				Largest.setFocusable(false);
+			}
+		});
+		compute.setBounds(26, 217, 138, 23);
+		contentPane.add(compute);
+		
+		JButton clear = new JButton("Clear");
+		clear.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				First.setText(null);
+				Second.setText(null);
+				Third.setText(null);
+				Largest.setText(null);
+			}
+		});
+		clear.setBounds(205, 217, 89, 23);
+		contentPane.add(clear);
+	}
+
+}
