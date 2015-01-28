@@ -1,0 +1,127 @@
+import java.awt.BorderLayout;
+import java.awt.EventQueue;
+
+import javax.swing.JFrame;
+import javax.swing.JPanel;
+import javax.swing.border.EmptyBorder;
+import javax.swing.JLabel;
+import javax.swing.JButton;
+import javax.swing.JTextField;
+import java.awt.event.ActionListener;
+import java.awt.event.ActionEvent;
+
+
+public class Quadratic extends JFrame {
+
+	private JPanel contentPane;
+	private JTextField First;
+	private JTextField Second;
+	private JTextField Third;
+	private JTextField Results;
+
+	/**
+	 * Launch the application.
+	 */
+	public static void main(String[] args) {
+		EventQueue.invokeLater(new Runnable() {
+			public void run() {
+				try {
+					Quadratic frame = new Quadratic();
+					frame.setVisible(true);
+				} catch (Exception e) {
+					e.printStackTrace();
+				}
+			}
+		});
+	}
+
+	/**
+	 * Create the frame.
+	 */
+	public Quadratic() {
+		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		setBounds(100, 100, 450, 300);
+		contentPane = new JPanel();
+		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
+		setContentPane(contentPane);
+		contentPane.setLayout(null);
+		
+		JLabel lblRealRoots = new JLabel("Real roots");
+		lblRealRoots.setBounds(90, 0, 133, 31);
+		contentPane.add(lblRealRoots);
+		
+		JLabel lblFirstCoefficient = new JLabel("First coefficient");
+		lblFirstCoefficient.setBounds(10, 25, 103, 31);
+		contentPane.add(lblFirstCoefficient);
+		
+		JLabel lblSecondCoefficient = new JLabel("Second Coefficient");
+		lblSecondCoefficient.setBounds(10, 71, 97, 31);
+		contentPane.add(lblSecondCoefficient);
+		
+		JLabel lblThirdCoefficient = new JLabel("Third Coefficient");
+		lblThirdCoefficient.setBounds(20, 123, 93, 36);
+		contentPane.add(lblThirdCoefficient);
+		
+		JLabel lblResults = new JLabel("Results");
+		lblResults.setBounds(30, 176, 64, 31);
+		contentPane.add(lblResults);
+		
+		JButton btnCompute = new JButton("Compute");
+		btnCompute.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				int a,b,c;
+				double d;
+				
+				a = Integer.parseInt(First.getText());
+				b = Integer.parseInt(Second.getText());
+				c = Integer.parseInt(Third.getText());
+				
+				d = b*b - 4*a*c;
+				
+				if(d<0){
+					Results.setText("no real roots");
+				}
+				else if(d==0){
+					Results.setText(-b/2*a + "");				
+				}
+				else{
+					Results.setText("Root 1 = "+(-b+Math.sqrt(d)/(2*a))+
+							"and root 2 ="+(-b-Math.sqrt(d)/(2*a)));
+				}
+					
+				}
+		});
+		btnCompute.setBounds(40, 228, 89, 23);
+		contentPane.add(btnCompute);
+		
+		First = new JTextField();
+		First.setBounds(177, 30, 86, 20);
+		contentPane.add(First);
+		First.setColumns(10);
+		
+		Second = new JTextField();
+		Second.setBounds(177, 76, 86, 20);
+		contentPane.add(Second);
+		Second.setColumns(10);
+		
+		Third = new JTextField();
+		Third.setBounds(177, 131, 86, 20);
+		contentPane.add(Third);
+		Third.setColumns(10);
+		
+		Results = new JTextField();
+		Results.setBounds(177, 167, 86, 20);
+		contentPane.add(Results);
+		Results.setColumns(10);
+		
+		JButton btnClear = new JButton("Clear");
+		btnClear.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				
+			}
+		});
+		btnClear.setBounds(203, 228, 89, 23);
+		contentPane.add(btnClear);
+	}
+
+}
